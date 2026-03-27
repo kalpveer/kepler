@@ -30,10 +30,10 @@ const DISPLAY_ALT: Record<string, number> = {
 };
 
 const GlobeView: React.FC<GlobeViewProps> = ({ satellites, onSatelliteClick, onMapClick, isRotating }) => {
-  const globeEl = useRef<any>();
+  const globeEl = useRef<any>(null);
   const [tick, setTick] = useState(0);
-  const lastTick = useRef(0);
-  const animRef = useRef<number>();
+  const lastTick = useRef<number>(0);
+  const animRef = useRef<number>(0);
 
   // Tick every 5 s for position updates
   useEffect(() => {
