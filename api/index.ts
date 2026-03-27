@@ -33,7 +33,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
       const response = await axios.get(
         'https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=tle',
-        { timeout: 15000 }
+        { 
+          timeout: 10000,
+          headers: { 'User-Agent': 'Kepler/1.0 (intelligence-platform)' }
+        }
       );
       let sats = parseTLE(response.data);
       const filter = req.query?.filter as string;
