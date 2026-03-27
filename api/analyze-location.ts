@@ -26,16 +26,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       axios.get('https://nominatim.openstreetmap.org/reverse', {
         params: { lat, lon, format: 'json', addressdetails: 1 },
         headers: { 'User-Agent': 'Kepler/1.0 (intelligence-platform)' },
-        timeout: 6000,
+        timeout: 8000,
       }),
       axios.get('https://api.open-meteo.com/v1/forecast', {
         params: { latitude: lat, longitude: lon, current: 'temperature_2m,relative_humidity_2m,wind_speed_10m,cloud_cover,weather_code', wind_speed_unit: 'kmh' },
-        timeout: 6000,
+        timeout: 8000,
       }),
-      axios.post('https://api.open-elevation.com/api/v1/lookup', { locations: [{ latitude: lat, longitude: lon }] }, { timeout: 6000 }),
+      axios.post('https://api.open-elevation.com/api/v1/lookup', { locations: [{ latitude: lat, longitude: lon }] }, { timeout: 8000 }),
       axios.get('https://eonet.gsfc.nasa.gov/api/v3/events', {
         params: { status: 'open', limit: 5, bbox: `${lon - 10},${lat - 10},${lon + 10},${lat + 10}` },
-        timeout: 6000,
+        timeout: 8000,
       }),
     ]);
 
